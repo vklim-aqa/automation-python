@@ -1,6 +1,6 @@
 import time
 
-from pages.elements_page import TextBoxPage, CheckBoxPage
+from pages.elements_page import TextBoxPage, CheckBoxPage, RadioButtonPage
 
 
 class TestElements:
@@ -25,3 +25,18 @@ class TestElements:
             print(input_checkbox)
             print(output_result)
             assert input_checkbox == output_result
+
+    class TestRadioButton:
+
+        def test_radio_button(self, driver):
+            radio_button_page = RadioButtonPage(driver, 'https://demoqa.com/radio-button')
+            radio_button_page.open()
+            radio_button_page.click_on_the_radio_button('yes')
+            selected_label = radio_button_page.get_selected_radio_box_label()
+            print(selected_label)
+            assert selected_label == 'Yes'
+            radio_button_page.click_on_the_radio_button('impressive')
+            selected_label = radio_button_page.get_selected_radio_box_label()
+            print(selected_label)
+            assert selected_label == 'Impressive'
+            time.sleep(2)
